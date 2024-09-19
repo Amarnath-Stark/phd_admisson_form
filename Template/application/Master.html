@@ -1,0 +1,483 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Ramco Institute of Technology</title>
+    <style>
+        input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-right: 25px;
+        }
+
+        .vertical-nav {
+            min-width: 23rem;
+            width: 23rem;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+        }
+
+        .page-content {
+            width: calc(100% - 23rem);
+            margin-left: 23rem;
+            padding-top: 20px; /* Add some padding to avoid overlap */
+            transition: all 0.4s;
+        } 
+
+        #sidebar.active {
+            margin-left: -23rem;
+        }
+
+        #content.active {
+            width: 100%;
+            margin: 0;
+        }
+
+        .separator {
+            margin: 3rem 0;
+            border-bottom: 1px dashed #fff;
+        }
+
+        .text-uppercase {
+            letter-spacing: 0.1em;
+        }
+
+        .text-gray {
+            color: #aaa;
+        }
+
+        .nav-link {
+            text-transform: capitalize;
+        }
+
+        .nav-link:hover {
+            background: #f3f2f2;
+        }
+
+        .text-primary {
+            color: #a82707 !important;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -23rem;
+            }
+            #sidebar.active {
+                margin-left: 0;
+            }
+            #content {
+                width: 100%;
+                margin: 0;
+            }
+            #content.active {
+                margin-left: 23rem;
+                width: calc(100% - 23rem);
+            }
+        }
+
+        .form-all {
+            padding: 20px; /* Ensure padding to avoid overlap */
+            margin-left: 23rem; /* Ensure it aligns correctly next to the sidebar */
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            transition: all 0.4s;
+        }
+
+        .admission {
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #00407b;
+            color: #fff;
+            padding-left: 3px;
+            line-height: 2;
+        }
+
+        td {
+            height: 30px;
+        }
+
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="page-content p-5" id="content">
+      <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+      <div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light border-bottom">
+          <div class="media d-flex align-items-center">
+            <div class="media-body">
+                <img decoding="async" src="{% static 'images/RIT_logo.png' %}" alt="..." width="80" height="80" class="mr-3 rounded-bottom img-thumbnail shadow-sm">
+
+              <h4 class="m-0">Ph.D Admission</h4>
+              <p class="font-weight-normal text-muted mb-0">Ramco Institute of Technology</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-bottom mb-2" style="width: 23rem;">
+          <div class="card-body text-center">
+            <i class="bi bi-person-circle" style="font-size: 2rem;"></i>
+            <h5 class="card-title">{{Name}}</h5>
+            <p class="card-text">{{Department}}</p>
+            <p class="card-text">{{role}}</p>
+          </div>
+        </div>
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Menu</p>
+        <ul class="nav flex-column bg-white mb-0">
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark">
+                      <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                      home
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'index' %}" class="nav-link bg-info text-white" >
+                      <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                      PHD ADMISSION
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'approval' %}"class="nav-link text-dark">
+                      <i class="fa fa-check-square mr-3 text-primary fa-fw"></i>
+                      Approval
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href=""class="nav-link text-dark">
+                      <i class="fa fa-question-circle mr-3 text-primary fa-fw"></i>
+                      Clarification
+                  </a>
+          </li>
+
+          <li class="nav-item">
+            <a href=""class="nav-link text-dark">
+                      <i class="fa fa-eye mr-3 text-primary fa-fw"></i>
+                      View Appoval
+                  </a>
+          </li>
+            <li class="nav-item">
+                <a href="{% url 'check_form' %}"class="nav-link text-dark">
+                    <i class="fa fa-chart-line mr-3 text-primary fa-fw"></i>
+                        PDF
+                    </a>
+            </li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link text-dark">
+              <i class="fa fa-sign-out-alt mr-3 text-primary fa-fw"></i> <!-- Logout Icon -->
+              Log Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+      <div class="container">
+        <div class="heading"></div>
+            <div class="form-all">
+                <div class="admission">
+                        <form method="post" action="{% url 'Masterform' %}"  autocomplete="off" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <span class="title"><b>Bachelor's</b></span>
+
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <div class="form-group">
+                                              <label for="input2">Degree</label>
+                                              <select name="bachelor_degree" id="Degree" class="form-control" >
+                                                  <option hidden>Select*</option>
+                                                  <option value="B.E">B.E</option>
+                                                  <option value="B.tech">B.tech</option>
+                                                  <option value="BSC">BSC</option>
+                                                  <option value="MSC">MSC</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-4">
+                                          <div class="form-group">
+                                            <label for="input2">Branch</label>
+                                            <select name="bachelor_discipline" class="form-control"  >
+                                                <option value="" disabled selected>Select your option</option>
+                                                <option value="CE">Civil Engineering</option>
+                                                <option value="ME">Mechanical Engineering</option>
+                                                <option value="EEE">Electrical and Electronics Engineering</option>
+                                                <option value="ECE">Electronics and Communication Engineering</option>
+                                                <option value="CSE">Computer Science and Engineering</option>
+                                                <option value="IT">Information Technology</option>
+                                                <option value="ChE">Chemical Engineering</option>
+                                                <option value="BME">Biomedical Engineering</option>
+                                                <option value="AE">Aeronautical Engineering</option>
+                                                <option value="AuE">Automobile Engineering</option>
+                                                <option value="BT">Biotechnology</option>
+                                                <option value="TE">Textile Engineering</option>
+                                                <option value="PE">Production Engineering</option>
+                                                <option value="EnvE">Environmental Engineering</option>
+                                                <option value="IE">Industrial Engineering</option>
+                                                <option value="AgE">Agricultural Engineering</option>
+                                                <option value="MRE">Marine Engineering</option>
+                                                <option value="MnE">Mining Engineering</option>
+                                                <option value="PtE">Petroleum Engineering</option>
+                                                <option value="MetE">Metallurgical Engineering</option>
+                                                <option value="RA">Robotics and Automation</option>
+                                                <option value="MT">Mechatronics Engineering</option>
+                                                <option value="SE">Software Engineering</option>
+                                                <option value="NT">Nanotechnology</option>
+                                                <option value="StE">Structural Engineering</option>
+                                                <option value="AE">Applied Electronics</option>
+                                                <option value="GI">Geoinformatics</option>
+                                                <option value="FT">Food Technology</option>
+                                                <option value="TT">Textile Technology</option>
+                                                <option value="ICE">Instrumentation and Control Engineering</option>
+                                            </select>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-4">
+                                        <div class="form-group">
+                                          <label for="engineeringUniversities">Select Engineering University:</label>
+                                          <select name="bachelor_university" class="form-control"  >
+                                              <option value="" disabled selected>Select your option</option>
+                                              <option value="Anna University">Anna University, Chennai</option>
+                                              <option value="Anna University Coimbatore">Anna University of Technology, Coimbatore</option>
+                                              <option value="Anna University Coimbatore">Anna University of Technology, Madurai</option>
+                                              <option value="Anna University Coimbatore">Anna University of Technology, Dindugul</option>
+                                              <option value="Anna University Coimbatore">Anna University of Technology, Tirunelveli</option>
+                                              <option value="Anna University Coimbatore">Anna University of Technology, Thoothugudi</option>
+                                              <option value="Anna University Coimbatore">Anna University of Technology, NagarKovil</option>
+                                              <option value="Anna University Coimbatore">Madurai Kamaraj University , Madurai</option>
+                                              <option value="Anna University Coimbatore">manonmaniam sundaranar university</option>
+                                              <option value="TN Dr MGR University">Tamil Nadu Dr. M.G.R. University, Chennai</option>
+                                              <option value="SRM University">SRM Institute of Science and Technology, Chennai</option>
+                                              <option value="Sathyabama University">Sathyabama Institute of Science and Technology, Chennai</option>
+                                              <option value="VIT">Vellore Institute of Technology (VIT), Vellore</option>
+                                              <option value="HITS">Hindustan Institute of Technology and Science (HITS), Chennai</option>
+                                              <option value="Amrita">Amrita Vishwa Vidyapeetham, Coimbatore</option>
+                                              <option value="Karunya">Karunya Institute of Technology and Sciences, Coimbatore</option>
+                                              <option value="Bharath University">Bharath Institute of Higher Education and Research, Chennai</option>
+                                              <option value="Vel Tech">Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology, Chennai</option>
+                                              <option value="TNAU">Tamil Nadu Agricultural University (TNAU), Coimbatore</option>
+                                              <option value="Periyar Maniammai">Periyar Maniammai Institute of Science & Technology, Thanjavur</option>
+                                          </select>
+                                          </div>
+                                    </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="input1">Year</label>
+                                                <input type="number" name="bachelor_year" id="Year" class="form-control" placeholder="Enter the Year" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <div class="form-group">
+                                              <label for="input2">Average Marks/CGPA</label>
+                                              <input type="number" name="bachelor_cgpa" id="CGPA" class="form-control" placeholder="Enter the CGPA" />
+                                          </div>
+                                      </div>
+                                      <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="input2">Class</label>
+                                            <select name="bachelor_class" id="bachelor_class" class="form-control" >
+                                                <option hidden>Select*</option>
+                                                <option value="First">First</option>
+                                                <option value="Second">Second</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                      <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="input2">Aggregate/Grade</label>
+                                            <input type="text" name="bachelor_aggregate" id="Aggregate/Grade" class="form-control" placeholder="Enter the Aggregate/Grade" />
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                   
+                                      <span class="title"><b>Masters</b></span>
+
+                                      <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                  <label for="input2">Degree</label>
+                                                  <select name="master_degree" id="Degree" class="form-control" >
+                                                      <option hidden>Select*</option>
+                                                      <option value="M.E">M.E</option>
+                                                      <option value="M.tech">M.tech</option>
+                                                      <option value="MBA">MBA</option>
+                                                      <option value="M.tech">M.Sc</option>
+                                                      <option value="M.E">M.Arch</option>                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label for="input2">Branch</label>
+                                              <select name="master_discipline" class="form-control"  >
+                                                <option value="" disabled selected>Select your option</option>
+                                                <!-- Master of Engineering (M.E.) Branches -->
+                                                <option value="AppliedElectronics">Applied Electronics</option>
+                                                <option value="CommunicationSystems">Communication Systems</option>
+                                                <option value="CSE">Computer Science and Engineering</option>
+                                                <option value="ControlInstrumentation">Control and Instrumentation Engineering</option>
+                                                <option value="EmbeddedSystems">Embedded System Technologies</option>
+                                                <option value="EngineeringDesign">Engineering Design</option>
+                                                <option value="EnvironmentalEngineering">Environmental Engineering</option>
+                                                <option value="HighVoltageEngineering">High Voltage Engineering</option>
+                                                <option value="IndustrialEngineering">Industrial Engineering</option>
+                                                <option value="ICEngineering">Internal Combustion Engineering</option>
+                                                <option value="ManufacturingEngineering">Manufacturing Engineering</option>
+                                                <option value="PowerElectronics">Power Electronics and Drives</option>
+                                                <option value="StructuralEngineering">Structural Engineering</option>
+                                                <option value="ThermalEngineering">Thermal Engineering</option>
+                                                <option value="VLSIDesign">VLSI Design</option>
+                                                <option value="WirelessCommunication">Wireless Communication</option>
+                                                <option value="TransportationEngineering">Transportation Engineering</option>
+                                                <!-- Master of Technology (M.Tech.) Branches -->
+                                                <option value="Biotechnology">Biotechnology</option>
+                                                <option value="CSE">Computer Science and Engineering</option>
+                                                <option value="IT">Information Technology</option>
+                                                <option value="Nanotechnology">Nanotechnology</option>
+                                                <option value="PolymerScience">Polymer Science and Engineering</option>
+                                                <option value="RemoteSensing">Remote Sensing</option>
+                                                <option value="TextileTechnology">Textile Technology</option>
+                                                <option value="RubberTechnology">Rubber Technology</option>
+                                                <option value="FoodTechnology">Food Technology</option>
+
+                                                <!-- Master of Science (M.Sc.) Branches -->
+                                                <option value="SoftwareEngineering">Software Engineering</option>
+                                                <option value="ComputerScience">Computer Science</option>
+                                                <option value="IT">Information Technology</option>
+
+                                                <!-- Master of Architecture (M.Arch.) Branches -->
+                                                <option value="General">General</option>
+                                                <option value="Landscape">Landscape Architecture</option>
+
+                                                <!-- Master of Business Administration (MBA) Branches -->
+                                                <option value="General">General Management</option>
+                                                <option value="TechnologyManagement">Technology Management</option>
+                                                <option value="HumanResources">Human Resources</option>
+                                                <option value="Finance">Finance</option>
+                                                <option value="Marketing">Marketing</option>
+                                                <option value="General"> General</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                          <div class="col-md-4">
+                                              <div class="form-group">
+                                                <label for="engineeringUniversities">Select Engineering University:</label>
+                                                <select name="master_university" class="form-control"  >
+                                                    <option value="" disabled selected>Select your option</option>
+                                                    <option value="Anna University">Anna University, Chennai</option>
+                                                    <option value="Anna University Coimbatore">Anna University of Technology, Coimbatore</option>
+                                                    <option value="Anna University Coimbatore">Anna University of Technology, Madurai</option>
+                                                    <option value="Anna University Coimbatore">Anna University of Technology, Dindugul</option>
+                                                    <option value="Anna University Coimbatore">Anna University of Technology, Tirunelveli</option>
+                                                    <option value="Anna University Coimbatore">Anna University of Technology, Thoothugudi</option>
+                                                    <option value="Anna University Coimbatore">Anna University of Technology, NagarKovil</option>
+                                                    <option value="Anna University Coimbatore">Madurai Kamaraj University , Madurai</option>
+                                                    <option value="Anna University Coimbatore">manonmaniam sundaranar university</option>
+                                                    <option value="TN Dr MGR University">Tamil Nadu Dr. M.G.R. University, Chennai</option>
+                                                    <option value="SRM University">SRM Institute of Science and Technology, Chennai</option>
+                                                    <option value="Sathyabama University">Sathyabama Institute of Science and Technology, Chennai</option>
+                                                    <option value="VIT">Vellore Institute of Technology (VIT), Vellore</option>
+                                                    <option value="HITS">Hindustan Institute of Technology and Science (HITS), Chennai</option>
+                                                    <option value="Amrita">Amrita Vishwa Vidyapeetham, Coimbatore</option>
+                                                    <option value="Karunya">Karunya Institute of Technology and Sciences, Coimbatore</option>
+                                                    <option value="Bharath University">Bharath Institute of Higher Education and Research, Chennai</option>
+                                                    <option value="Vel Tech">Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology, Chennai</option>
+                                                    <option value="TNAU">Tamil Nadu Agricultural University (TNAU), Coimbatore</option>
+                                                    <option value="Periyar Maniammai">Periyar Maniammai Institute of Science & Technology, Thanjavur</option>
+                                                </select>
+                                                </div>
+                                          </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="input1">Year</label>
+                                                    <input type="number" name="master_year" id="Year" class="form-control" placeholder="Enter the Year" />
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                              <div class="form-group">
+                                                  <label for="input2">Average Marks/CGPA</label>
+                                                  <input type="number" name="master_cgpa" id="CGPA" class="form-control" placeholder="Enter the CGPA" />
+                                                </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="input2">Class</label>
+                                                <select name="master_class" id="master_class" class="form-control" >
+                                                    <option hidden>Select*</option>
+                                                    <option value="First">First</option>
+                                                    <option value="Second">Second</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                      <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="input2">Aggregate/Grade</label>
+                                            <input type="text" name="master_aggregate" id="Aggregate/Grade" class="form-control" placeholder="Enter the Aggregate/Grade" />
+                                          </div>
+                                    </div>
+                                  </div>
+
+
+                                
+                              <div class="d-flex justify-content-end mt-3">
+                                <a onclick="goBack()" class="btn btn-primary mr-2">Previous Page</a>
+                                <button type="submit" class="btn btn-primary">Next Page</button>
+                            </div>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                  <script>
+                    // Function to navigate back to the previous page
+                    function goBack() {
+                        window.history.back();
+                    }
+            
+                    $(function() {
+                        // Toggle sidebar and content visibility
+                        $('#sidebarCollapse').on('click', function() {
+                            $('#sidebar, #content').toggleClass('active');
+                        });
+                    });
+                </script>
+                    </body>
+
+
+                    </html>
