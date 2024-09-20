@@ -554,8 +554,8 @@ def generate_pdf(request):
     dc = DCMember.objects.filter(application_no=application_no).first()
     guide = GuideDetails.objects.filter(application_no=application_no).first()
     school = SchoolDetails.objects.filter(application_no=application_no).first()
-    experience = Experience_Details.objects.filter(application_no=application_no).filter()
-
+    experience = Experience_Details.objects.filter(application_no=application_no).first()
+    print(experience.start_year1)
     # Create the PDF object, using the buffer as its "file."
     p = canvas.Canvas(buffer, pagesize=A4)
 
@@ -616,13 +616,13 @@ def generate_pdf(request):
     p.rect(100, height - 265, 150, 15)
     p.drawString(105,height-260,str(personal.permanent_address_pincode))
     p.drawString(316,height-260,str(personal.communication_address_pincode))
-    p.drawString(50, height - 275, " Mobile No:")
+    # p.drawString(50, height - 275, " Mobile No:")
+    # p.line(100 , height - 280 , 250, height - 280)
+    # p.drawString(105,height-278,personal.mobile_number)
+    # p.drawString(315,height-278,personal.mobile_number)
+    p.drawString(50, height - 275, " Mail id:")
     p.line(100 , height - 280 , 250, height - 280)
-    p.drawString(105,height-278,personal.mobile_number)
-    p.drawString(315,height-278,personal.mobile_number)
-    p.drawString(50, height - 290, " Mail id:")
-    p.line(85 , height - 295 , 250, height - 295)
-    p.drawString(100,height-290,Register.self_email_id)
+    p.drawString(105,height-278,Register.self_email_id)
     
     
     
@@ -633,13 +633,15 @@ def generate_pdf(request):
     p.rect(310, height - 265, 140, 15)
     p.drawString(260, height - 275, " Mobile No:")
     p.line(310 , height - 280 , 450, height - 280)
-    p.drawString(260, height - 290, " Mail id:")
-    p.line(295 , height - 295 , 450, height - 295)
+    p.drawString(315,height-278,personal.mobile_number)
+    # p.drawString(260, height - 290, " Mail id:")
+    # p.line(295 , height - 295 , 450, height - 295)
 
 
     p.rect(40, height - 330, 530, 25)
     p.drawString(50, height - 320, " Types of Registration:")
     p.rect(40, height - 465, 530, 110)
+    p.drawString(170,height-320,Register.type_of_registration)
     
     p.drawString(50, height - 350, " School Details")
 
@@ -658,16 +660,28 @@ def generate_pdf(request):
 
 
     p.drawString(50 ,height - 385, " School" )
-    
+    p.drawString(140,height-388,school.school_name_10th)
+    p.drawString(358,height-388,school.school_name_12th)
+
     p.drawString(50 ,height - 400, " Year of passing" )
+    p.drawString(140,height-403,str(school.year_of_passing_10th))
+    p.drawString(358,height-403,str(school.year_of_passing_12th))
     
     p.drawString(50 ,height - 415, " Studied In" )
+    p.drawString(140,height-418,school.std_studied_in_10th)
+    p.drawString(358,height-418,school.std_studied_in_12th)
     
     p.drawString(50 ,height - 430, " Medium of Study" )
+    p.drawString(140,height-433,school.medium_of_study_10th)
+    p.drawString(358,height-433,school.medium_of_study_12th)
     
     p.drawString(50 ,height - 445, " Type of Study" )
+    p.drawString(140,height-448,school.school_type_10th)
+    p.drawString(358,height-448,school.school_type_12th)
     
     p.drawString(50 ,height - 460, " Total Mark" )
+    p.drawString(140,height-463,str(school.total_mark_10th))
+    p.drawString(358,height-463,str(school.total_mark_12th))
     
     
     
@@ -687,16 +701,23 @@ def generate_pdf(request):
     p.line(350 , height - 635 , 350, height - 495)
     
     p.drawString(50 ,height - 530, " Degree" )
+    p.drawString(358,height-533,master.master_degree)
+    
     
     p.drawString(50 ,height - 550, " Branch" )
+    p.drawString(358,height-553,master.master_discipline)
     
     p.drawString(50 ,height - 570, " University" )
+    p.drawString(358,height-573,master.master_university)
     
     p.drawString(50 ,height - 590, " Year Of Passing" )
+    p.drawString(358,height-593,str(master.master_year))
     
     p.drawString(50 ,height - 610, " CGPA" )
+    p.drawString(358,height-613,str(master.master_cgpa))
     
     p.drawString(50 ,height - 630, " Class" )
+    p.drawString(358,height-633,master.master_class)
     
     p.drawString(50, height - 700, " Professional Experience")
     p.rect(40, height - 800, 530, 90)
@@ -713,11 +734,26 @@ def generate_pdf(request):
 
     p.drawString(60 ,height - 730, " Area" )
     p.drawString(140 ,height - 730, " Organization" )
+    p.drawString(112,height-755,experience.name_of_the_organization1)
+    p.drawString(112,height-776,experience.name_of_the_organization2)
+    p.drawString(112,height-796,experience.name_of_the_organization3)
     p.drawString(270 ,height - 730, " Designation" )
+    p.drawString(275,height-756,experience.designation1)
+    p.drawString(275,height-776,experience.designation2)
+    p.drawString(275,height-796,experience.designation3)
     p.drawString(395 ,height - 720, " Period" )
     p.drawString(510 ,height - 730, " Nature" )
+    p.drawString(482,height-757,experience.nature_of_work1)
+    p.drawString(482,height-776,experience.nature_of_work2)
+    p.drawString(482,height-796,experience.nature_of_work3)
     p.drawString(365 ,height - 735, " From" )
+    p.drawString(373,height-757,str(experience.start_year1))
+    p.drawString(373,height-776,str(experience.start_year2))
+    p.drawString(373,height-796,str(experience.start_year3))
     p.drawString(435 ,height - 735, " To" )
+    p.drawString(438,height-755,str(experience.to1))
+    p.drawString(438,height-776,str(experience.to2))
+    p.drawString(438,height-796,str(experience.to3))
 
 
 
